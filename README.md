@@ -1,10 +1,11 @@
 # project_a_o_i_d
-## create and activate
+## Setup_venv
+### create and activate
 python -m venv a_o_i_d
 
 a_o_i_d\Scripts\activate
 
-## setup
+### setup
 pip install flask
 
 pip install flask_login
@@ -13,5 +14,5 @@ pip install flask_sqlalchemy
 
 pip install werkzeug
 
-## run
+### run
 flask --app project --debug run
