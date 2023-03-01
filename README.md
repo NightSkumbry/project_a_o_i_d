@@ -12,7 +12,5 @@ pip install flask_login
 
 pip install flask_sqlalchemy
 
-pip install werkzeug
-
 ### run
 flask --app project --debug run

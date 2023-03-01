@@ -12,12 +12,19 @@ class User(UserMixin, db.Model):
     birthday = db.Column(db.DateTime)
     sex = db.Column(db.Integer)
 
-    def __init__(self, email, password, name, second_name, birthday, sex=None, father_name=None):
+    def __init__(self, email, password, name, second_name, birthday):
         self.email = email
         self.password = password
         self.name = name
         self.second_name = second_name
         self.birthday = birthday
 
-        self.father_name = '' if father_name is None else father_name
-        self.sex = 0 if sex is None else sex
+        self.father_name = ''
+        self.sex = 0
+
+    def set_fathername(self, father_name):
+        self.father_name = father_name
+
+    def set_sex(self, sex):
+        self.sex = sex
+
