@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Завершение регистрации</h3>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-warning">
+            {{ messages[0] }}.
+        </div>
+    {% endif %}
+    {% endwith %}
+    <div class="box">
+        <form method="POST" action="/end_register">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Зарплата</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="salary" autofocus="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Доп. доходы</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="an_income" autofocus="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Расходы на одежду</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="clothes" autofocus="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Расходы на еду</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="food" autofocus="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Комунальные услуги</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="comunal" autofocus="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Прочие расходы</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="other" autofocus="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="button is-block is-info is-fullwidth">Завершить</button>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

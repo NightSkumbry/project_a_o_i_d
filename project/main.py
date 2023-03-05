@@ -10,24 +10,28 @@ def index():
     return render_template('index.html')
 
 
-@main.route('/profile')
+@main.route('/end_register')
 @login_required
-def profile():
-    return render_template('profile.html')
+def end_register():
+    return render_template('register_complition.html')
 
-@main.route('/profile', methods=['POST'])
+@main.route('/end_register', methods=['POST'])
 @login_required
-def profile_score():
-    salary = int(request.form.get('salary'))
-    an_income = int(request.form.get('an_income'))
-    clothes = int(request.form.get('clothes'))
-    food = int(request.form.get('food'))
-    comunal = int(request.form.get('comunal'))
-    other = int(request.form.get('other'))
+def end_register_post():
+    salary = request.form.get('salary')
+    an_income = request.form.get('an_income')
+    clothes = request.form.get('clothes')
+    food = request.form.get('food')
+    comunal = request.form.get('comunal')
+    other = request.form.get('other')
 
-    a = salary+an_income-clothes-food-comunal-other
-    if a > 0:
-        flash(f'Сумма ежемесячных накоплений составляет {a} руб.')
-    else:
-        flash(f'Что бы иметь возможность откладывать хотя бы 1 рубль с текущим доходом, необходимо сократить расходы хотя бы на {1-a} руб.')
-    return redirect(url_for('main.profile'))
+    print([salary, an_income, clothes, food, comunal, other])
+
+    if not all([salary, an_income, clothes, food, comunal, other]):
+        flash('Вам стоило бы заполнить все поля')
+        return redirect(url_for('main.end_register'))
+
+    current_user.end_registeration(*map(int, [salary, an_income, clothes, food, comunal, other]))
+
+    db.session.commit()
+    return redirect(url_for('profile.profile'))

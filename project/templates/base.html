@@ -18,13 +18,32 @@
 
                     <div id="navbarMenuHeroA" class="navbar-menu">
                         <div class="navbar-end">
+                            {% if not current_user.is_authenticated or current_user.register_ended %}
                             <a href="{{ url_for('main.index') }}" class="navbar-item">
                                 Домашняя страница
                             </a>
-                            {% if current_user.is_authenticated %}
-                            <a href="{{ url_for('main.profile') }}" class="navbar-item">
-                                Рассчёт
-                            </a>
+                            {% endif %}
+                            {% if current_user.register_ended %}
+                            <div class="navbar-item has-dropdown is-hoverable">
+                                <p class="navbar-link" style="background-color: #00d1b2">
+                                    Профиль
+                                </p>
+
+                                <div class="navbar-dropdown" style="background-color: #00d1b2">
+                                    <a href="{{ url_for('profile.main_profile') }}" class="navbar-item is-dark" disabled>
+                                        Профиль
+                                    </a>
+
+                                    <hr class="navbar-divider is-dark">
+
+                                    <a href="{{ url_for('profile.vklad') }}" class="navbar-item is-dark">
+                                        Вклады
+                                    </a>
+                                    <a href="{{ url_for('profile.credit') }}" class="navbar-item is-dark">
+                                        Кредиты
+                                    </a>
+                                </div>
+                            </div>
                             {% endif %}
                             {% if not current_user.is_authenticated %}
                             <a href="{{ url_for('auth.login') }}" class="navbar-item">
