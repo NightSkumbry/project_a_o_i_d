@@ -8,11 +8,9 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     name = db.Column(db.String(100))
     second_name = db.Column(db.String(100))
-    birthday = db.Column(db.DateTime)
 
-    def __init__(self, email, password, name, second_name, birthday):
+    def __init__(self, email, password, name, second_name):
         self.email = email
         self.password = password
         self.name = name
         self.second_name = second_name
-        self.birthday = birthday
