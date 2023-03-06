@@ -20,7 +20,7 @@ def credit():
     if not current_user.register_ended:
         return redirect(url_for('main.end_register'))
 
-    return render_template('profile.html')
+    return render_template('credit.html')
 
 
 @profile.route('/vklad')
@@ -29,4 +29,4 @@ def vklad():
     if not current_user.register_ended:
         return redirect(url_for('main.end_register'))
 
-    return render_template('profile.html')
+    return render_template('vklad.html')

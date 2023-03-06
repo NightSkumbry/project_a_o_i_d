@@ -34,4 +34,4 @@ def end_register_post():
     current_user.end_registeration(*map(int, [salary, an_income, clothes, food, comunal, other]))
 
     db.session.commit()
-    return redirect(url_for('profile.profile'))
+    return redirect(url_for('profile.main_profile'))
