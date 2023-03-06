@@ -17,6 +17,7 @@ class User(UserMixin, db.Model):
     food_spend = db.Column(db.Integer)
     communal_spend = db.Column(db.Integer)
     other_spend = db.Column(db.Integer)
+    mounthly_remains = db.Column(db.Integer)
 
     
 
@@ -32,6 +33,7 @@ class User(UserMixin, db.Model):
         self.food_spend = 0
         self.communal_spend = 0
         self.other_spend = 0
+        self.mounthly_remains = 0
 
     def end_registeration(self, salary, another_income, clothes_spend, food_spend, communal_spend, other_spend):
         self.salary = salary
@@ -40,4 +42,5 @@ class User(UserMixin, db.Model):
         self.food_spend = food_spend
         self.communal_spend = communal_spend
         self.other_spend = other_spend
+        self.mounthly_remains = salary+another_income-clothes_spend-food_spend-communal_spend-other_spend
         self.register_ended = True

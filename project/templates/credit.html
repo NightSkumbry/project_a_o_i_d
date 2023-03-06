@@ -53,12 +53,13 @@
                     </div>
                 </div>
                 <div class="field-label is-normal">
-                    <label class="label">месяцев</label>
+                    <label class="label"> месяцев</label>
                 </div>
             </div>
         </form>
     </div>
     <div id="result" class="notification is-primary is-light"></div>
+    <div id="sugest" class="notification is-primary is-light"></div>
 </div>
 
 <script type="text/javascript">
@@ -68,11 +69,39 @@
         var summ = Number(document.getElementById("summ").value);
         var mounth = Number(document.getElementById("mounth").value);
         var percent = Number(document.getElementById("percent").value);
-        percent = percent / 1200
+        percent = percent / 1200;
+        var remains = Number({{ current_user.mounthly_remains }});
 
-        result = summ * (percent + (percent / (((1+percent) ** mounth)-1)))
+        if (summ > 0 && mounth > 0 && percent > 0) {
+            result = summ * (percent + (percent / (((1+percent) ** mounth)-1)));
+            var total_sum = result*mounth
 
-        document.getElementById("result").innerHTML = "Ежемесячная сумма выплат: " + String(result.toFixed(2)) + " руб.<br/>Общая сумма выплат: " + String((result*mounth).toFixed(2)) + " руб.";
+            document.getElementById("result").innerHTML = "Ежемесячная выплата: " + String(result.toFixed(2))
+            + " руб.<br/>Общая сумма выплат: " + String((total_sum).toFixed(2))
+            + " руб.<br/>Сумма переплаты: " + String((total_sum-summ).toFixed(2))
+            + "руб.";
+
+            if (remains - result > 7500) {
+                document.getElementById("sugest").className = "notification is-success is-light";
+                document.getElementById("sugest").innerHTML = "Брать можно";
+            }
+            else {
+                if (remains - result > 5000) {
+                    document.getElementById("sugest").className = "notification is-warning";
+                    document.getElementById("sugest").innerHTML = "Задумайтесь. Если возьмёте, у вас останется " + String(remains - result) + " руб. накопления в месяц";
+                }
+                else {
+                    document.getElementById("sugest").className = "notification is-danger";
+                    document.getElementById("sugest").innerHTML = "Брать не стоит.";
+                }
+            }
+        }
+        else {
+            document.getElementById("result").innerHTML = "Заолните все поля, пожалуйста";
+            document.getElementById("sugest").className = "notification is-primary is-light";
+            document.getElementById("sugest").innerHTML = "";
+        }
+
     }
 </script>
 
