@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="column is-4 is-offset-4">
-    <h3 class="title">Профиль</h3>
+    <h3 class="title">Калькулятор кредита</h3>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
         <div class="notification is-warning">
@@ -11,7 +11,61 @@
     {% endif %}
     {% endwith %}
     <div class="box">
-        Потом сделаю.
+        <form method="POST" action="/credit">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Сумма кредита</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input id="summ" onchange="func()" class="input" type="number" name="summ" autofocus="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Процентная ставка</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input id="percent" onchange="func()" class="input" type="number" name="percent" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="field-label is-normal">
+                    <label class="label">%</label>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Срок</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input id="mounth" onchange="func()" class="input" type="number" name="mounth" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="field-label is-normal">
+                    <label class="label"> месяцев</label>
+                </div>
+            </div>
+        </form>
     </div>
+    <div id="result" class="notification is-primary is-light"></div>
+    <div id="sugest" class="notification is-primary is-light"></div>
 </div>
+
+<script type="text/javascript">
+    function func() {
+
+    }
+</script>
+
 {% endblock %}

@@ -30,3 +30,5 @@ def vklad():
         return redirect(url_for('main.end_register'))
 
     return render_template('vklad.html')
+
+

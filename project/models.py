@@ -34,6 +34,7 @@ class User(UserMixin, db.Model):
         self.communal_spend = 0
         self.other_spend = 0
         self.mounthly_remains = 0
+        
 
     def end_registeration(self, salary, another_income, clothes_spend, food_spend, communal_spend, other_spend):
         self.salary = salary
