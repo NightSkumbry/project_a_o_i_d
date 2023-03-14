@@ -3,11 +3,11 @@ from . import db
 
 
 class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
+    id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
-    name = db.Column(db.String(100))
-    second_name = db.Column(db.String(100))
+    family_size = db.Column(db.Integer)
+    pets_count = db.Column(db.Integer)
 
     register_ended = db.Column(db.Boolean)
 
@@ -21,11 +21,11 @@ class User(UserMixin, db.Model):
 
     
 
-    def __init__(self, email, password, name, second_name):
+    def __init__(self, email, password, family_size, pets_count):
         self.email = email
         self.password = password
-        self.name = name
-        self.second_name = second_name
+        self.family_size = family_size
+        self.pets_count = pets_count
         self.register_ended = False
         self.salary = 0
         self.another_income = 0

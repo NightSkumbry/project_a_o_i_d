@@ -19,13 +19,10 @@ def login_post():
 
     user = User.query.filter_by(email=email).first()
 
-    # check if the user actually exists
-    # take the user-supplied password, hash it, and compare it to the hashed password in the database
     if not user or not check_password_hash(user.password, password):
         flash('Пожалуйста, проверьте введённые данные и попробуйте снова.')
-        return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
+        return redirect(url_for('auth.login'))
 
-    # if the above check passes, then we know the user has the right credentials
     login_user(user, remember=remember)
     if current_user.register_ended:
         return redirect(url_for('profile.main_profile'))
@@ -40,11 +37,11 @@ def signup():
 @auth.route('/signup', methods=['POST'])
 def signup_post():
     email = request.form.get('email')
-    name = request.form.get('name')
+    family_size = int(request.form.get('family_size').replace('e', ''))
     password = request.form.get('password')
-    second_name = request.form.get('second_name')
+    pets_count = int(request.form.get('pets_count').replace('e', ''))
 
-    if not all([email, name, password, second_name]): # if a user is found, we want to redirect back to signup page so user can try again
+    if not all([email, family_size > 0, password, pets_count >= 0]): # if a user is found, we want to redirect back to signup page so user can try again
         flash('1Заполните все обязательные поля, пожалуйста')
         return redirect(url_for('auth.signup'))
     # print(f'{email=} {name=} {password=} {second_name=}')
@@ -57,9 +54,9 @@ def signup_post():
 
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
     new_user = User(email=email,
-                    name=name,
+                    family_size=family_size,
                     password=generate_password_hash(password, method='sha256'),
-                    second_name=second_name)
+                    pets_count=pets_count)
 
     # add the new user to the database
     db.session.add(new_user)

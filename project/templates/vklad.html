@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="column is-4 is-offset-4">
-    <h3 class="title">Калькулятор кредита</h3>
+<div class="column is-8 is-offset-2">
+    <h3 class="title">Калькулятор вкладов</h3>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
         <div class="notification is-warning">
@@ -12,11 +12,12 @@
     {% endwith %}
     <div class="box">
         <form method="POST" action="/credit">
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Сумма вклада</label>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Сумма вклада </label>
                 </div>
-                <div class="field-body">
+                <div class="column is-5 field-body">
                     <div class="field">
                         <div class="control">
                             <input id="summ" onchange="func()" class="input" type="number" name="summ" autofocus="">
@@ -25,67 +26,66 @@
                 </div>
             </div>
 
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Процентная ставка</label>
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Процентная ставка </label>
                 </div>
-                <div class="field-body">
+                <div class="column is-5 field-body">
                     <div class="field">
                         <div class="control">
                             <input id="percent" onchange="func()" class="input" type="number" name="percent" autofocus="">
                         </div>
                     </div>
                 </div>
-                <div class="field-label is-normal">
+                <div class="is-normal" style="margin-top: 18px">
                     <label class="label">%</label>
                 </div>
             </div>
 
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Срок</label>
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Срок </label>
                 </div>
-                <div class="field-body">
+                <div class="column is-5 field-body">
                     <div class="field">
                         <div class="control">
                             <input id="mounth" onchange="func()" class="input" type="number" name="mounth" autofocus="">
                         </div>
                     </div>
                 </div>
-                <div class="field-label is-normal">
+                <div class="is-normal" style="margin-top: 18px">
                     <label class="label"> месяцев</label>
                 </div>
             </div>
 
-            <div class="field-label is-normal">
-                    <label class="label">Наличие капитализации:</label>
-            </div>
-            <div class="field is-horizontal">
-                <label class="radio">
-                    <input type="radio" onchange="func()" name="cap" value="1">
-                    Да
-                </label>
-                <label class="radio">
-                    <input type="radio" onchange="func()" name="cap" value="0" checked>
-                    Нет
-                </label>
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal">
+                        <label class="label">Наличие капитализации </label>
+                </div>
+                <div class="column is-5 field is-horizontal">
+                    <label class="radio">
+                        <input type="radio" onchange="func()" name="cap" value="1">
+                        Да
+                    </label>
+                    <label class="radio">
+                        <input type="radio" onchange="func()" name="cap" value="0" checked>
+                        Нет
+                    </label>
+                </div>
             </div>
 
-            <div class="field-label is-normal">
-                    <label class="label">Периодичность капитализации: </label>
-            </div>
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
                     <label class="label">Раз в </label>
                 </div>
-                <div class="field-body">
+                <div class="column is-5 field-body">
                     <div class="field">
                         <div class="control">
                             <input id="cap_rate" onchange="func()" class="input" type="number" name="cap_rate" autofocus="">
                         </div>
                     </div>
                 </div>
-                <div class="field-label is-normal">
+                <div class="is-normal" style="margin-top: 18px">
                     <label class="label"> месяца</label>
                 </div>
             </div>
