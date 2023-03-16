@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="column is-4 is-offset-4">
+<div class="column is-10 is-offset-1">
     <h3 class="title">Профиль</h3>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -11,7 +11,293 @@
     {% endif %}
     {% endwith %}
     <div class="box">
-        Потом сделаю.
+        <form method="POST" action="/profile">
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Тип траты</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label>Текущее значение</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label>Рекомендуемое сокращение расходов</label>
+                </div>
+                <div class="column is-normal" style="margin-top: 12px">
+                    <label class="label">Новое значение</label>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label"></label>
+                </div>
+            </div>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Зарплата</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.salary }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">-</label>
+                </div>
+                <div class="column field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="salary" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label">Руб.</label>
+                </div>
+            </div>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Доп. доходы</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.another_income }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">-</label>
+                </div>
+                <div class="column field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="an_income" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label">Руб.</label>
+                </div>
+            </div>
+            <hr class="navbar-divider is-dark">
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Расходы на одежду и обувь</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.clothes_spend }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.clothes_spend_good }} руб.</label>
+                </div>
+                <div class="column field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="clothes" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label">Руб.</label>
+                </div>
+            </div>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Расходы на еду</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.food_spend }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.food_spend_good }} руб.</label>
+                </div>
+                <div class="column field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="food" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label">Руб.</label>
+                </div>
+            </div>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Комунальные услуги</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.communal_spend }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.communal_spend }} руб.</label>
+                </div>
+                <div class="column field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="comunal" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label">Руб.</label>
+                </div>
+            </div>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Услуги сотовой связи и интернет</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.internet_spend }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.internet_spend }} руб.</label>
+                </div>
+                <div class="column field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="internet" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label">Руб.</label>
+                </div>
+            </div>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Подписки на сервисы</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.subscribtions_spend }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.subscribtions_spend_good }} руб.</label>
+                </div>
+                <div class="column field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="subscribtions" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label">Руб.</label>
+                </div>
+            </div>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Развлечения</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.fun_spend }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.fun_spend_good }} руб.</label>
+                </div>
+                <div class="column field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="fun" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label">Руб.</label>
+                </div>
+            </div>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Расходы на личный автомобиль</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.car_spend }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.car_spend }} руб.</label>
+                </div>
+                <div class="column field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="car" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label">Руб.</label>
+                </div>
+            </div>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Поездки на транспорте</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.bus_spend }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.bus_spend_good }} руб.</label>
+                </div>
+                <div class="column field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="bus" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label">Руб.</label>
+                </div>
+            </div>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Расходы на домашних животных</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.pets_spend }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.pets_spend_good }} руб.</label>
+                </div>
+                <div class="column field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="pets" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label">Руб.</label>
+                </div>
+            </div>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Прочие расходы</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.other_spend }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">-</label>
+                </div>
+                <div class="column field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="number" name="other" autofocus="">
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label">Руб.</label>
+                </div>
+            </div>
+
+            <button class="button is-block is-info is-fullwidth">Обновить</button>
+
+        </form>
     </div>
 </div>
 {% endblock %}

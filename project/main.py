@@ -24,14 +24,20 @@ def end_register_post():
     food = request.form.get('food')
     comunal = request.form.get('comunal')
     other = request.form.get('other')
+    internet = request.form.get('internet')
+    subscribtions = request.form.get('subscribtions')
+    fun = request.form.get('fun')
+    car = request.form.get('car')
+    bus = request.form.get('bus')
+    pets = request.form.get('pets')
 
-    print([salary, an_income, clothes, food, comunal, other])
+    # print([salary, an_income, clothes, food, comunal, other])
 
-    if not all([salary, an_income, clothes, food, comunal, other]):
-        flash('Вам стоило бы заполнить все поля')
+    if not all([salary, an_income, clothes, food, comunal, other, internet, subscribtions, fun, car, bus, pets]):
+        flash('Вам стоило бы заполнить все поля, хотя бы нулями')
         return redirect(url_for('main.end_register'))
 
-    current_user.end_registeration(*map(int, [salary, an_income, clothes, food, comunal, other]))
+    current_user.end_registeration(*map(int, [salary, an_income, clothes, food, comunal, other, internet, subscribtions, fun, car, bus, pets]))
 
     db.session.commit()
     return redirect(url_for('profile.main_profile'))
