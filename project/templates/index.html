@@ -1,7 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  Калькулятор накоплений
-</h1>
+<div class="content is-normal">
+    <h1 class="title is-2">
+        Финансовый калькулятор
+    </h1>
+    <h3 class="subtitle is-3">
+        Калькулятор поможет вам проанализировать ваше финансовое состояние
+    </h3>
+    <div class="container has-text-left">
+        <h5 class="title is-4">Вы сможете:</h5>
+        <ul>
+            <li>Узнать ежемесячную выплату, общую сумму выплат и сумму переплаты по кредиту</li>
+            <li>Рассчитать сумму вклада с процентами и начисленные проценты</li>
+            <li>Применить возможный вариант сокращения расходов</li>
+        </ul>
+    </div>
+    <br>
+    <h2 class="title is-3">Рекомендуемое сокращение расходов</h2>
+        <img width="710" height="700" src="{{ url_for('static',filename='images/table.png') }}">
+</div>
 {% endblock %}

@@ -67,17 +67,17 @@ class User(UserMixin, db.Model):
 
         self.clothes_spend = clothes_spend
         k = 1
-        if 50_000 >= clothes_spend/self.family_size > 25_000:
+        if 35_000 >= clothes_spend/self.family_size > 20_000:
             k = 0.6
-        elif clothes_spend/self.family_size > 50_000:
+        elif clothes_spend/self.family_size > 35_000:
             k = 0.35
         self.clothes_spend_good = int(clothes_spend * k)
         
         self.food_spend = food_spend
         k = 1
-        if 30_000 >= food_spend/self.family_size > 10_000:
+        if 20_000 >= food_spend/self.family_size > 10_000:
             k = 0.7
-        elif food_spend/self.family_size > 30_000:
+        elif food_spend/self.family_size > 20_000:
             k = 0.3
         self.food_spend_good = int(food_spend * k)
         
@@ -91,17 +91,17 @@ class User(UserMixin, db.Model):
         
         self.subscribtions_spend = subscribtions_spend
         k = 1
-        if 5_000 >= subscribtions_spend/self.family_size > 1_500:
+        if 2_000 >= subscribtions_spend/self.family_size > 1_500:
             k = 0.75
-        elif subscribtions_spend/self.family_size > 5_000:
+        elif subscribtions_spend/self.family_size > 2_000:
             k = 0.25
         self.subscribtions_spend_good = int(subscribtions_spend * k)
         
         self.fun_spend = fun_spend
         k = 1
-        if 10_000 >= fun_spend/self.family_size > 3_000:
+        if 6_500 >= fun_spend/self.family_size > 3_000:
             k = 0.5
-        elif fun_spend/self.family_size > 10_000:
+        elif fun_spend/self.family_size > 6_500:
             k = 0.2
         self.fun_spend_good = int(fun_spend * k)
         
@@ -109,15 +109,15 @@ class User(UserMixin, db.Model):
         
         self.bus_spend = bus_spend
         k = 1
-        if 5_000 >= bus_spend/self.family_size > 2_500:
+        if 4_000 >= bus_spend/self.family_size > 2_500:
             k = 0.7
-        elif bus_spend/self.family_size > 5_000:
+        elif bus_spend/self.family_size > 4_000:
             k = 0.35
         self.bus_spend_good = int(bus_spend * k)
         
         self.pets_spend = pets_spend
         k = 1
-        if 6_000 >= pets_spend/self.pets_count > 3_000:
+        if 6_000 >= pets_spend/self.pets_count > 4_000:
             k = 0.7
         elif pets_spend/self.pets_count > 6_000:
             k = 0.5

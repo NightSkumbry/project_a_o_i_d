@@ -41,8 +41,3 @@ def create_app():
         return User.query.get(int(user_id))
 
     return app
-
-
-if __name__ == '__main__':
-    from waitress import serve
-    serve(create_app(), host="192.168.1.59", port=10000)

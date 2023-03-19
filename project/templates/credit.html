@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="column is-4 is-offset-4">
+<div class="column is-6 is-offset-3">
     <h3 class="title">Калькулятор кредита</h3>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -12,11 +12,11 @@
     {% endwith %}
     <div class="box">
         <form method="POST" action="/credit">
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Сумма кредита</label>
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Сумма кредита </label>
                 </div>
-                <div class="field-body">
+                <div class="column is-5 field-body">
                     <div class="field">
                         <div class="control">
                             <input id="summ" onchange="func()" class="input" type="number" name="summ" autofocus="">
@@ -25,41 +25,40 @@
                 </div>
             </div>
 
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Процентная ставка</label>
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Процентная ставка </label>
                 </div>
-                <div class="field-body">
+                <div class="column is-5 field-body">
                     <div class="field">
                         <div class="control">
                             <input id="percent" onchange="func()" class="input" type="number" name="percent" autofocus="">
                         </div>
                     </div>
                 </div>
-                <div class="field-label is-normal">
+                <div class="is-normal" style="margin-top: 18px">
                     <label class="label">%</label>
                 </div>
             </div>
-            
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label">Срок</label>
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Срок </label>
                 </div>
-                <div class="field-body">
+                <div class="column is-5 field-body">
                     <div class="field">
                         <div class="control">
                             <input id="mounth" onchange="func()" class="input" type="number" name="mounth" autofocus="">
                         </div>
                     </div>
                 </div>
-                <div class="field-label is-normal">
+                <div class="is-normal" style="margin-top: 18px">
                     <label class="label"> месяцев</label>
                 </div>
             </div>
         </form>
     </div>
     <div id="result" class="notification is-primary is-light"></div>
-    <div id="sugest" class="notification is-primary is-light"></div>
 </div>
 
 <script type="text/javascript">
@@ -71,35 +70,21 @@
         var percent = Number(document.getElementById("percent").value);
         percent = percent / 1200;
         var remains = Number({{ current_user.mounthly_remains }});
+        var remains_g = Number({{ current_user.mounthly_remains_good }});
 
         if (summ > 0 && mounth > 0 && percent > 0) {
             result = summ * (percent + (percent / (((1+percent) ** mounth)-1)));
             var total_sum = result*mounth
 
             document.getElementById("result").innerHTML = "Ежемесячная выплата: " + String(result.toFixed(2))
-            + " руб.<br/>Общая сумма выплат: " + String((total_sum).toFixed(2))
-            + " руб.<br/>Сумма переплаты: " + String((total_sum-summ).toFixed(2))
-            + "руб.";
-
-            if (remains - result > 7500) {
-                document.getElementById("sugest").className = "notification is-success is-light";
-                document.getElementById("sugest").innerHTML = "Брать можно";
-            }
-            else {
-                if (remains - result > 5000) {
-                    document.getElementById("sugest").className = "notification is-warning";
-                    document.getElementById("sugest").innerHTML = "Задумайтесь. Если возьмёте, у вас останется " + String(remains - result) + " руб. накопления в месяц";
-                }
-                else {
-                    document.getElementById("sugest").className = "notification is-danger";
-                    document.getElementById("sugest").innerHTML = "Брать не стоит.";
-                }
-            }
+            + " руб.<br/><br/>Общая сумма выплат: " + String((total_sum).toFixed(2))
+            + " руб.<br/><br/>Сумма переплаты: " + String((total_sum-summ).toFixed(2))
+            + " руб.<br/><br/>Ежемесячный остаток с учётом вычета ежемесячной выплаты кредита: " + String((remains-result).toFixed(2))
+            + " руб.<br/><br/>Ежемесячный остаток с учётом сокращенных расходов и вычета ежемесячной выплаты кредита: " + String((remains_g-result).toFixed(2))
+            + " руб.";
         }
         else {
-            document.getElementById("result").innerHTML = "Заолните все поля, пожалуйста";
-            document.getElementById("sugest").className = "notification is-primary is-light";
-            document.getElementById("sugest").innerHTML = "";
+            document.getElementById("result").innerHTML = "Заполните все поля, пожалуйста";
         }
 
     }

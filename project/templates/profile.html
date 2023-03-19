@@ -121,7 +121,7 @@
 
             <div class="columns is-mobile">
                 <div class="column is-4 field-label is-normal" style="margin-top: 12px">
-                    <label class="label">Комунальные услуги</label>
+                    <label class="label">Коммунальные услуги</label>
                 </div>
                 <div class="column field-label is-normal" style="margin-top: 12px">
                     <label class="label">{{ current_user.communal_spend }} руб.</label>
@@ -292,6 +292,25 @@
                 </div>
                 <div class="column is-1 is-normal" style="margin-top: 12px">
                     <label class="label">Руб.</label>
+                </div>
+            </div>
+            <hr class="navbar-divider is-dark">
+
+            <div class="columns is-mobile">
+                <div class="column is-4 field-label is-normal" style="margin-top: 12px">
+                    <label class="label">Ежемесячный остаток</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.mounthly_remains }} руб.</label>
+                </div>
+                <div class="column field-label is-normal" style="margin-top: 12px">
+                    <label class="label">{{ current_user.mounthly_remains_good }} руб.</label>
+                </div>
+                <div class="column is-normal" style="margin-top: 12px">
+                    <label class="label"></label>
+                </div>
+                <div class="column is-1 is-normal" style="margin-top: 12px">
+                    <label class="label"></label>
                 </div>
             </div>
 
