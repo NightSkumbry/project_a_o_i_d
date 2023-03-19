@@ -123,5 +123,5 @@ class User(UserMixin, db.Model):
             k = 0.5
         self.pets_spend_good = int(pets_spend * k)
 
-        self.mounthly_remains = salary + another_income - clothes_spend - food_spend - communal_spend - internet_spend - subscribtions_spend - fun_spend - car_spend - bus_spend - pets_spend
-        self.mounthly_remains_good = salary + another_income - self.clothes_spend_good - self.food_spend_good - communal_spend - internet_spend - self.subscribtions_spend_good - self.fun_spend_good- car_spend - self.bus_spend_good - self.pets_spend_good
+        self.mounthly_remains = salary + another_income - clothes_spend - food_spend - communal_spend - internet_spend - subscribtions_spend - fun_spend - car_spend - bus_spend - pets_spend - other_spend
+        self.mounthly_remains_good = salary + another_income - self.clothes_spend_good - self.food_spend_good - communal_spend - internet_spend - self.subscribtions_spend_good - self.fun_spend_good- car_spend - self.bus_spend_good - self.pets_spend_good - other_spend
