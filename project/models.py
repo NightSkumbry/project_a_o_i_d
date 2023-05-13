@@ -115,13 +115,17 @@ class User(UserMixin, db.Model):
             k = 0.35
         self.bus_spend_good = int(bus_spend * k)
         
-        self.pets_spend = pets_spend
-        k = 1
-        if 6_000 >= pets_spend/self.pets_count > 4_000:
-            k = 0.7
-        elif pets_spend/self.pets_count > 6_000:
-            k = 0.5
-        self.pets_spend_good = int(pets_spend * k)
+        if self.pets_count:
+            self.pets_spend = pets_spend
+            k = 1
+            if 6_000 >= pets_spend/self.pets_count > 4_000:
+                k = 0.7
+            elif pets_spend/self.pets_count > 6_000:
+                k = 0.5
+            self.pets_spend_good = int(pets_spend * k)
+        else:
+            self.pets_spend = 0
+            self.pets_spend_good = 0
 
-        self.mounthly_remains = salary * 0.87 + another_income - clothes_spend - food_spend - communal_spend - internet_spend - subscribtions_spend - fun_spend - car_spend - bus_spend - pets_spend - other_spend
+        self.mounthly_remains = salary * 0.87 + another_income - clothes_spend - food_spend - communal_spend - internet_spend - subscribtions_spend - fun_spend - car_spend - bus_spend - self.pets_spend - other_spend
         self.mounthly_remains_good = salary * 0.87 + another_income - self.clothes_spend_good - self.food_spend_good - communal_spend - internet_spend - self.subscribtions_spend_good - self.fun_spend_good- car_spend - self.bus_spend_good - self.pets_spend_good - other_spend
